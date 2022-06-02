@@ -1,0 +1,856 @@
+swagger: "2.0"
+info:
+  x-updated-date: 2022-03-28
+  description: "The idea behind the mini project is to provide the initial experience around these areas for the fresh software engineers. The mini-project will focus on developing a mini version of one of the Sysco systems."
+  version: "1.0.0"
+  title: "Swagger Mini project"
+host: "food.production.sysco"
+basePath: "/v2"
+tags:
+- name: "Product Catalog"
+  description: "Access to Product Catalog Service"
+- name: "Product"
+  description: "Access to Product Service"
+- name: "Wishlist"
+  description: "Operations about Wishlist Service"
+- name: "Cart"
+  description: "Operations about Cart Service"
+schemes:
+- "http"
+paths:
+  /product_catalog/:
+    post:
+      tags:
+      - "Product Catalog"
+      summary: "Add a new Product Catalog"
+      description: ""
+      operationId: "addProductCatalog"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product Catalog object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/product_catalog"
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Product Catalog"
+      summary: "Finds all catalog"
+      description: "Finds all catalog"
+      operationId: "getCatalogAll"
+      produces:
+      - "application/json"
+      - "application/xml"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product_catalog_list"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+  /product_catalog/{catalog_id}:
+    put:
+      tags:
+      - "Product Catalog"
+      summary: "Update Product Catalog"
+      description: "Update Product Catalog"
+      operationId: "updateProductCatalogById"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "catalog_id"
+        in: "path"
+        description: "ID of catalog to update"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Product Catalog object that needs to be update to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/product_catalog"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product_catalog"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Product Catalog"
+      summary: "Finds Product Catalog By Id"
+      description: "Finds Product Catalog By Id"
+      operationId: "getProductCatalogById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "catalog_id"
+        in: "path"
+        description: "ID used to get the catalog informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product_catalog"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    delete:
+      tags:
+      - "Product Catalog"
+      summary: "Delete Product Catalog By Id"
+      description: "Finds Product Catalog By Id"
+      operationId: "deleteCatalogById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "catalog_id"
+        in: "path"
+        description: "ID used to get the catalog informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product_catalog"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+  /product_catalog/{catalog_name}/:
+    get:
+      tags:
+      - "Product Catalog"
+      summary: "Finds Product Catalog By name"
+      description: "Finds Product Catalog By name"
+      operationId: "getProductCatalogByName"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "catalog_name"
+        in: "path"
+        description: "name of catalog to get catalog infor"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product_catalog"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error. 
+   
+  # -------------------------------
+          
+  /product/:
+    post:
+      tags:
+      - "Product"
+      summary: "Add a new Product"
+      description: ""
+      operationId: "addProduct"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/product"
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Product"
+      summary: "Finds all product"
+      description: "Finds all product"
+      operationId: "getProductAll"
+      produces:
+      - "application/json"
+      - "application/xml"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product_list"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+  /product/{product_id}:
+    put:
+      tags:
+      - "Product"
+      summary: "Update Product"
+      description: "Update Product"
+      operationId: "updateProductById"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "product_id"
+        in: "path"
+        description: "product_id used to update the product"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Product object that needs to be update to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/product"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Product"
+      summary: "Finds Product By Id"
+      description: "Finds Product By Id"
+      operationId: "getProductById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "product_id"
+        in: "path"
+        description: "ID used to get the catalog informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    delete:
+      tags:
+      - "Product"
+      summary: "Delete Product By Id"
+      description: "Finds Product By Id"
+      operationId: "deleteProductById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "product_id"
+        in: "path"
+        description: "ID used to get the Product informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+  /product/{product_name}/:
+    get:
+      tags:
+      - "Product"
+      summary: "Finds Product By name"
+      description: "Finds Product By name"
+      operationId: "getProductByName"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "product_name"
+        in: "path"
+        description: "product_name of used to get product infor"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error. 
+          
+  # -------------------------------
+  
+  /wishlist/:
+    post:
+      tags:
+      - "Wishlist"
+      summary: "Add a new Wishlist"
+      description: ""
+      operationId: "addWishlist"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Wishlist object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/wishlist"
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Wishlist"
+      summary: "Finds all Wishlist"
+      description: "Finds all Wishlist"
+      operationId: "getWishlistAll"
+      produces:
+      - "application/json"
+      - "application/xml"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/wishlist_list"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+  /wishlist/{wishlist_id}:
+    put:
+      tags:
+      - "Wishlist"
+      summary: "Wishlist Product"
+      description: "Wishlist Product"
+      operationId: "updateWishlistById"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "wishlist_id"
+        in: "path"
+        description: "product_id used to update the product"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Product object that needs to be update to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/wishlist"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/product"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Wishlist"
+      summary: "Finds Wishlist By Id"
+      description: "Finds Wishlist By Id"
+      operationId: "getWishlistById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "wishlist_id"
+        in: "path"
+        description: "Wishlist ID used to get the Wishlist informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/wishlist"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    delete:
+      tags:
+      - "Wishlist"
+      summary: "Delete Wishlist By Id"
+      description: "Finds Wishlist By Id"
+      operationId: "deleteWishlistById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "wishlist_id"
+        in: "path"
+        description: "Wishlist ID used to delete the Wishlist informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/wishlist"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+          
+  # -------------------------------
+  
+  /cart/:
+    post:
+      tags:
+      - "Cart"
+      summary: "Add a new Cart"
+      description: "Add a new Cart"
+      operationId: "addCart"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cart object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/cart"
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Cart"
+      summary: "Finds all Cart"
+      description: "Finds all Cart"
+      operationId: "getCartAll"
+      produces:
+      - "application/json"
+      - "application/xml"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/cart_list"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+  /cart/{cart_id}/:
+    put:
+      tags:
+      - "Cart"
+      summary: "Cart Product"
+      description: "Cart Product"
+      operationId: "updateCartById"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "cart_id"
+        in: "path"
+        description: "cart_id used to update the Cart"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Cart object that needs to be update to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/cart"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/cart"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    get:
+      tags:
+      - "Cart"
+      summary: "Finds Cart By Id"
+      description: "Finds Cart By Id"
+      operationId: "getCartById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "cart_id"
+        in: "path"
+        description: "cart ID used to get the Wishlist informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/cart"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+    delete:
+      tags:
+      - "Cart"
+      summary: "Delete Cart By Id"
+      description: "Finds Cart By Id"
+      operationId: "deleteCartById"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "cart_id"
+        in: "path"
+        description: "cart ID used to delete the Cart informstion"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/cart"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '405':
+          description: Method Not Allowed.
+        '500':
+          description: Internal Server Error.
+
+definitions:    
+  product_catalog:
+    type: "object"
+    properties:
+      catalog_id:
+        type: "string"
+        description: "Catalog ID"
+        example: "PC001"
+      catalog_name:
+        type: "string"
+        description: "Catalog Name"
+        example: "Vegetable"
+      added_date_at:
+        description: "Add date of the catalog Details"
+        example: "Sun, 31 Dec 2021 23:59:59 GMT"
+      updated_date_at:
+        type: "string"
+        description: "Update date of the catalog Details"
+        example: "Sun, 21 Dec 2022 23:59:59 GMT"
+  product_catalog_list:
+    type: array
+    items:
+      $ref: '#/definitions/product_catalog'
+  product:
+    type: "object"
+    properties:
+      product_id:
+        type: "string"
+        description: "Product ID"
+        example: "P001"
+      catalog_id:
+        type: "string"
+        description: "Catalog Name"
+        example: "Tomatoes"
+      productName:
+        type: "string"
+        description: "Product Name"
+        example: "Vegetable"
+      product_info:
+        description: "Product Information"
+        example: "Tomatoes"
+      product_amount:
+        type: "integer"
+        description: "Product amount by Kg"
+        example: 12
+      product_price:
+        type: "number"
+        description: "Product price by Rs"
+        example: 120.00
+      added_date_at:
+        description: "Add date of the Product Details"
+        example: "Sun, 31 Dec 2021 23:59:59 GMT"
+      updated_date_at:
+        type: "string"
+        description: "Update date of the Product Details"
+        example: "Sun, 21 Dec 2022 23:59:59 GMT"
+  product_list:
+    type: array
+    items:
+      $ref: '#/definitions/product_catalog'
+  wishlist:
+    type: "object"
+    properties:
+      wishlist_id:
+        type: "string"
+        description: "Wishlist ID"
+        example: "W001"
+      wishlist_name:
+        type: "string"
+        description: "Wishlist Name"
+        example: "Wishlist 1"
+      wishlist_total_price:
+        type: "number"
+        description: "wishlist total price"
+        example: "10000.00"
+      added_date_at:
+        description: "Add date of the Product Details"
+        example: "Sun, 31 Dec 2021 23:59:59 GMT"
+      updated_date_at:
+        type: "string"
+        description: "Update date of the Product Details"
+        example: "Sun, 21 Dec 2022 23:59:59 GMT"
+  wishlist_list:
+    type: array
+    items:
+      $ref: '#/definitions/wishlist'
+  cart:
+    type: "object"
+    properties:
+      cart_id:
+        type: "string"
+        description: "Cart ID"
+        example: "C001"
+      wishlist_id:
+        type: "string"
+        description: "Wishlist ID"
+        example: "W001"
+      cart_name:
+        type: "string"
+        description: "Cart Name"
+        example: "Cart 1"
+      ProductCart:
+          $ref: '#/definitions/productCart'
+      added_date_at:
+        description: "Add date of the Product Details"
+        example: "Sun, 31 Dec 2021 23:59:59 GMT"
+      updated_date_at:
+        type: "string"
+        description: "Update date of the Product Details"
+        example: "Sun, 21 Dec 2022 23:59:59 GMT"
+  cart_list:
+    type: array
+    items:
+      $ref: '#/definitions/wishlist'
+  productCart:
+    type: "object"
+    properties:
+      cart_id:
+        type: "string"
+        description: "cart ID"
+        example: "C001"
+      product_id:
+        type: "string"
+        description: "product id"
+        example: "P001"
+      productAmount:
+        description: "product seles Amount"
+        example: 12
+      product_price:
+        type: "number"
+        description: "product price"
+        example: 1200.00
+      produc_total_price:
+        type: "number"
+        description: "product total price"
+        example: 10000.00
